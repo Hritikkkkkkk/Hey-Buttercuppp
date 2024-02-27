@@ -38,3 +38,32 @@ btnYes.addEventListener("click", (e) => {
   imageOne.classList.add("hide");
   imageTwo.classList.remove("hide");
 });
+
+// Import the necessary modules
+const nodemailer = require('nodemailer');
+
+// Create a transporter object using the default SMTP transport
+let transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'heybuttercuppp@gmail.com',
+    pass: 'heybuttercuppp$@123'
+  }
+});
+
+// Specify the email options
+let mailOptions = {
+  from: 'heybuttercuppp@gmail.com',
+  to: 'hritikamber@gmail.com',
+  subject: 'Notification',
+  text: 'You clicked Yes!'
+};
+
+// Send the email
+transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+  }
+});
